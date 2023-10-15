@@ -1,17 +1,16 @@
 #ifndef KIRISUMMER_BIGINT_H_
 #define KIRISUMMER_BIGINT_H_
 
-#include <stdbool.h>
+#include <stdint.h>
+#include <stddef.h>
 
-#include "ints.h"
-
-typedef umax bui_block;
+typedef uint64_t bui_block;
 
 typedef struct big_uint {
     // least significant block first (small-endian but for blocks)
     bui_block *blocks;
-    usize len;
-    usize alloc;
+    size_t len;
+    size_t alloc;
 } big_uint;
 
 /* Inits, sets and gets *****************************************/
@@ -48,15 +47,16 @@ bui_hex_res bui_from_hex(const char *str);
 bui_hex_st bui_set_hex(big_uint *bui, const char *str);
 char* bui_hex(const big_uint bui);
 
-bui_alloc_res bui_from_uint(const umax u);
+bui_alloc_res bui_from_uint(const bui_block u);
+bui_alloc_st bui_set_uint(big_uint *bui, const bui_block u);
 
 /* Bitwise ops ***************************************************************/
 void bui_inv(big_uint *bui);
 bui_alloc_st bui_xor(big_uint *lhs, const big_uint rhs);
 bui_alloc_st bui_or(big_uint *lhs, const big_uint rhs);
 void bui_and(big_uint *lhs, const big_uint rhs);
-void bui_shr(big_uint *bui, umax amount); // >>
-bui_alloc_st bui_shl(big_uint *bui, umax amount); // <<
+void bui_shr(big_uint *bui, uintmax_t amount); // >>
+bui_alloc_st bui_shl(big_uint *bui, uintmax_t amount); // <<
 
 /* Arithmetic ops ************************************************************/
 bui_alloc_st bui_add(big_uint* lhs, const big_uint rhs);

@@ -9,3 +9,5 @@ add_library(big_uint STATIC
     src/init.c
 )
 target_include_directories(big_uint PUBLIC include)
+
+add_subdirectory(test)

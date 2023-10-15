@@ -1,0 +1,8 @@
+#ifndef KIRISUMMER_TEST_INIT_H_
+#define KIRISUMMER_TEST_INIT_H_
+
+#include "tinytest.h"
+
+TINYTEST_DECLARE_SUITE(BuiInit);
+
+#endif // KIRISUMMER_TEST_INIT_H_
