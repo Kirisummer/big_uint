@@ -1,0 +1,9 @@
+#ifndef KIRISUMMER_TEST_ARITHMETIC_H_
+#define KIRISUMMER_TEST_ARITHMETIC_H_
+
+#include "tinytest.h"
+
+TINYTEST_DECLARE_SUITE(BuiArithmetic);
+
+#endif // KIRISUMMER_TEST_ARITHMETIC_H_
+

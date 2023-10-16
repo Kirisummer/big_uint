@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#define BUI_BLOCK_MAX UINT64_MAX
 typedef uint64_t bui_block;
 
 typedef struct big_uint {
@@ -59,27 +60,38 @@ void bui_shr(big_uint *bui, uintmax_t amount); // >>
 bui_alloc_st bui_shl(big_uint *bui, uintmax_t amount); // <<
 
 /* Arithmetic ops ************************************************************/
+typedef enum bui_comp_res {
+    BUI_COMP_LS = 1, // 0b001
+    BUI_COMP_EQ = 2, // 0b010
+    BUI_COMP_GT = 4, // 0b100
+} bui_comp_res;
+
+bui_comp_res bui_comp(const big_uint lhs, const big_uint rhs);
+
 bui_alloc_st bui_add(big_uint* lhs, const big_uint rhs);
 
-typedef enum bui_sub_val_st {
+typedef enum bui_sub_st {
     BUI_SUB_SUCCESS = 0,
     BUI_SUB_UNDERFLOW,
-} bui_sub_val_st;
-
-typedef struct bui_sub_st {
-    bui_sub_val_st sub_st;
-    bui_alloc_st alloc_st;
 } bui_sub_st;
 
-bui_sub_st bui_sub(big_uint* lhs, const big_uint rhs);
+bui_sub_st bui_sub(big_uint *lhs, const big_uint rhs);
 
 bui_alloc_res bui_mul(const big_uint lhs, const big_uint rhs);
 
-typedef struct bui_div_mod_res {
+typedef enum bui_div_st {
+    BUI_DIV_SUCCESS = 0,
+    BUI_DIV_ZERO,
+} bui_div_st;
+
+typedef struct bui_div_res {
     big_uint div;
     big_uint mod;
-    bui_alloc_st status;
-} bui_div_mod_res;
-bui_div_mod_res bui_div_mod(const big_uint lhs, const big_uint rhs);
+
+    bui_alloc_st alloc_st;
+    bui_div_st div_st;
+} bui_div_res;
+
+bui_div_res bui_div_mod(const big_uint lhs, const big_uint rhs);
 
 #endif // KIRISUMMER_BIGINT_H_

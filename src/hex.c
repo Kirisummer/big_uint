@@ -44,7 +44,7 @@ bui_hex_st bui_set_hex(big_uint *bui, const char *str) {
     // assignment to new variables allows caller to free memory on fail
     // NOTE: new blocks are not zeroed out!!!
     const size_t str_len = ptr - str;
-    const size_t req_byte_alloc = (str_len >> 1); // str_len / 2
+    const size_t req_byte_alloc = (str_len >> 1) + (str_len & 1); // str_len / 2 + str_len % 2
     const size_t req_block_alloc = req_byte_alloc / sizeof(bui_block)
                                 + !!(req_byte_alloc % sizeof(bui_block));
     if (req_block_alloc > bui->alloc) {

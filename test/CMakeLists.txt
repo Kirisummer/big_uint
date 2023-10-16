@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 add_executable(big_uint_test 
+    arithmetic.c
     bitwise.c
     hex.c
     init.c

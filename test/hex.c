@@ -66,6 +66,8 @@ int test_hex_invalid(const char *name) {
     TINYTEST_EQUAL(0, u.alloc);
     TINYTEST_EQUAL(0, u.len);
 
+    bui_free(&u);
+
     return 1;
 }
 
