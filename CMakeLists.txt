@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project("big_uint" LANGUAGES C)
-set(C_STANDARD C23)
+set(C_STANDARD C11)
 
 add_library(big_uint STATIC
     src/arithmetic.c
