@@ -1,6 +1,29 @@
 # `big_uint`
 `big_uint` is a C library that implements arbitrary-length unsigned integers.
 
+## Operations
+
+### Init/deinit, value management
+- [x] Initialization from hex or unsigned integer
+- [x] Mutation of value with hex or unsigned integer
+- [x] Serialization to hex
+- [x] Copy
+
+### Bitwise operations
+- [x] Inverse
+- [x] XOR
+- [x] OR
+- [x] AND
+- [x] Shift right
+- [x] Shift left
+
+### Arithmetic operations
+- [x] Addition
+- [x] Subtraction
+- [ ] Multiplication
+- [ ] Division and modulo
+- [ ] Power
+
 ## Getting the library
 The library may be cloned from Github as follows:
 ```sh
@@ -21,7 +44,7 @@ The library is checked to be working with:
 The library uses CMake as a build system. Building the library itself:
 ```sh
 cmake -B build
-make -C build
+cmake --build build
 ```
 
 Assuming the library is placed into a separate directory in current directory,
@@ -43,9 +66,11 @@ a struct with enums, or a enum.
 Enum values should be checked for corresponding SUCCESS value for further usage of `big_uint`.
 If an allocation fails, `big_uint` should not be used at worst and must freed at best.
 
-"Binary" operators work as augmented assignment operators, i.e. they mutate
+Most binary operators work as augmented assignment operators, i.e. they mutate
 the left argument. `big_uint`'s value, however, may be copied to other `big_uint`.
 Keep in mind you need to check the allocation for success after the copying.
+
+The only binary operators to not mutate values are multiplication, division and power.
 
 `big_uint`-s may be passed as values for reading, and must be passed by pointer for mutation.
 
