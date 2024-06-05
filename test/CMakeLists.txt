@@ -9,4 +9,4 @@ add_executable(big_uint_test
 )
 target_include_directories(big_uint_test PRIVATE ../tinytest ../include)
 target_link_libraries(big_uint_test PRIVATE big_uint)
-add_test(NAME unit COMMAND test/big_uint_test)
+add_test(NAME unit COMMAND big_uint_test)

@@ -57,7 +57,8 @@ target_link_libraries(${YOUR_TARGET} PRIVATE big_uint)
 ### Testing
 Tests may be ran as follows:
 ```sh
-build/test/big_uint_test
+cd build
+make test
 ```
 
 ## Usage
